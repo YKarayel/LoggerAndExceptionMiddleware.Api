@@ -1,5 +1,6 @@
 
 
+using LoggerAndExceptionMiddleware.Api.Filters;
 using LoggerAndExceptionMiddleware.Api.Middlewares;
 using LoggerAndExceptionMiddleware.Api.Model;
 using LoggerAndExceptionMiddleware.Api.Repository;
@@ -22,7 +23,7 @@ builder.Services.AddDbContext<AppDbContext>(opt =>
 {
 	opt.UseSqlServer(builder.Configuration.GetConnectionString("Database"));
 });
-
+builder.Services.AddScoped(typeof(NotFoundFilter<>));
 builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
 
 builder.Services.AddControllers();

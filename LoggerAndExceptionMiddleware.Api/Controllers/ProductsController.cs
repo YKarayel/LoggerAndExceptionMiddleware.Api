@@ -1,4 +1,5 @@
-﻿using LoggerAndExceptionMiddleware.Api.ExceptionConfigurations;
+﻿
+using LoggerAndExceptionMiddleware.Api.Filters;
 using LoggerAndExceptionMiddleware.Api.Model;
 using LoggerAndExceptionMiddleware.Api.Repository;
 using LoggerAndExceptionMiddleware.Api.Service;
@@ -19,8 +20,9 @@ namespace LoggerAndExceptionMiddleware.Api.Controllers
 		{
 			_service = service;
 		}
-	
 
+
+		[ServiceFilter(typeof(NotFoundFilter<Products>))]
 		[HttpGet("{id}")]
 		public async Task<IActionResult> Get(int id)
 		{
